@@ -1,0 +1,28 @@
+
+
+import java.util.ArrayList;
+
+public class Regneklynge {
+    ArrayList<Rack> rack = new ArrayList<Rack>();
+    private int antallNoderPrRack;
+
+
+    Regneklynge(int nPrRack) {
+	antallNodePrRack = nPrRack;
+
+	Rack racket = new Rack();
+	Rack.add(racket);
+    }
+
+    public void settInnNode(Node node) {
+
+	if (antallNoderPrRack > racket.rackSize()) {
+	    racket.settInnNode(node);
+	}
+	else {
+	    Rack racket = new Rack();
+	    Rack.add(racket);
+	    racket.settInnNode(node);
+	}
+    }
+}

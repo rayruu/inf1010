@@ -1,0 +1,26 @@
+
+class Rack {
+    int storrelse;
+    Node[] racket;
+    
+    Rack(int nPrRack){
+	racket = new Node[nPrRack];
+	//System.out.println(racket.length);
+    }	
+
+    public void settInnNode(Node n, int pos) {
+	//racket.add(n);
+	racket[pos] = n;
+	//System.out.println(racket[pos]);
+    }
+
+    public Node hentNode(int i) {
+	return racket[i];
+	    }
+}
+
+
+
+    
+
+    

@@ -1,0 +1,11 @@
+
+class Prosessor {
+    int kjerne;
+    double klHastighet;
+    Node node;
+
+    Prosessor(int kj, double klokke) {
+	kjerne = kj;
+	klHastighet = klokke;
+    }
+}

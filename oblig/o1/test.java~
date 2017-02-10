@@ -1,0 +1,16 @@
+
+public class test {
+    public static void main(String[] args) {
+	
+	int antallNoder = 2;
+	Regneklynge rk = new RegneKlynge(antallNoder);
+	
+	// Node 1:
+	Node node1 = new Node(16, 4, 3.2);
+	rk.settInnNode(node1);
+	Node node2 = new Node(16, 4, 3.2);
+	rk.settInnNode(node2);
+	Node node3 = new Node(128, 16, 2.1, 2);
+	rk.settInnNode(node3);
+    }
+}

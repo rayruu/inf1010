@@ -1,0 +1,9 @@
+# ignore folders
+lessons
+exams
+plenum*
+print
+javacourse
+
+# ignore files
+*.class

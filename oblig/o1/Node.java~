@@ -1,0 +1,26 @@
+
+
+class Node {
+    int minneStorrelse;
+    int prosessorer = 1;
+    Prosessor pros1;
+    Prosessor pros2;
+
+    Node(int minne, int kjerner, double klokke) {
+	minneStorrelse = minne;
+
+	Prosessor prosessor1 = new Prosessor(kjerner, klokke);
+	pros1 = prosessor1;
+    }
+
+    Node(int minne, int kjerner, double klokke, int antProsessor) {
+	minneStorrelse = minne;
+	prosessorer = antProsessor;
+
+	Prosessor prosessor1 = new Prosessor(kjerner, klokke);
+	pros1 = prosessor1;
+	Prosessor prosessor2 = new Prosessor(kjerner, klokke);
+	pros2 = prosessor2;
+    }
+}
+
