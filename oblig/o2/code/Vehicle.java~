@@ -1,0 +1,23 @@
+/** This class is superclass for vehicles and it sorts out which type of vehicles, vehicle belongs to.
+ * 
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 10. Februar 2017
+ */
+
+public class Vehicle {
+    private String registerNumber;
+
+    public Vehicle (String registerNumber) {
+	this.registerNumber = registerNumber;
+    }
+
+    public String getInformation() {
+	return ("Type vehicle:  " getClass().getName() + "\n"
+		+ "Reg. number: " + this.registerNumber() "\n");
+	
+    }
+
+    public String toString() {
+	return getInformation()
+    }
+}
