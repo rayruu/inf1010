@@ -1,0 +1,20 @@
+public class void main(String[] args) {
+	StatiskTabell<String> tabell = new StatiskTabell<String>(5);
+	int antall;
+	boolean tom;
+	String Hei = "hei, paa deg";
+	String hentElement;
+
+
+	// test
+	antall = tabell.storrelsen;
+	tom = tabell.erTom;
+	system.out.println(antall);
+	system.out.println(tom);
+	
+	tabell.settInn(Hei);
+	tom = tabell.erTom;
+	antall = tabell.storrelsen;
+	system.out.println(antall);
+	system.out.println(tom);
+}

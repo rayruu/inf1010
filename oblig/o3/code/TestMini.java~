@@ -1,0 +1,5 @@
+public class main(String[] args) {
+	    Tabell<String> statiskTabell = (Tabell<String>) Class.forName("StatiskTabell").getDeclaredConstructor(int.class).newInstance(4);
+            testErTom(statiskTabell, "erTom() i tom StatiskTabell med 4 plasser", true);
+            testStorrelse(statiskTabell, "storrelse() i tom StatiskTabell med 4 plasser", 0);
+}

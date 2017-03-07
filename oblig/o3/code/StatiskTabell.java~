@@ -1,0 +1,43 @@
+
+import java.util.Iterator;
+import tabellunntak;
+
+public class StatiskTabell<T> implements Tabell<T> {
+    private int lengden;
+    private int antall = 0;
+    private T[] tabell;
+    
+    StatiskTabell<T> (int lengden) {
+	this.lengden = lengden;
+	this.tabell = (T[]) new Object[this.lengden];
+    }
+    
+    public int storrelsen(){
+	return this.antall;
+    }
+    
+    public boolean erTom() {
+	boolean tom = true;
+	if (antall != 0){
+	    tom = false;
+	}
+	return tom;
+    }
+
+    public settInn(T element) {
+	if (this.antall == this.lengden) {
+	    throw new FullTabellUnntak(storrelsen);
+	    }
+	else {
+	    this.tabell[antall] = element;
+	    this.antall ++;
+	}
+    }
+
+    public hentFraPlass(int plass) {
+	// try catch med ugyldigplass unntak
+	// iterer igjennom tabellen og finn elementet
+	private int element = 0;
+	return element;
+    }
+} 
