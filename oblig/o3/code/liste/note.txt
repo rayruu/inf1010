@@ -1,0 +1,15 @@
+metode: settinn
+Stabel: sette inn elementet på starten av listen (A)
+Kø:	sette inn elementet på slutten av listen
+ordnet: ordne stigende element
+
+metode: fjern
+Stabel: skal ta ut elementet fra starten av listen (A)
+Kø:	skal ta ut elementet fra starten av listen (A)
+Ordnet: skal ta ut det minste elementet
+
+metode: erTom
+lik for alle sammen (A)
+
+metode: storrelse
+lik for alle sammen (A)
