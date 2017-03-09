@@ -1,5 +1,7 @@
 public abstract class Lenkeliste<T> {
-    private Node foran = null;
+    // Paramtetre
+    private Node start = null;
+    private Node stopp = null;
 
     private class Node {
 	Node neste;
@@ -9,39 +11,36 @@ public abstract class Lenkeliste<T> {
 	    this.data = data;
 	}
     }
-
-    public void settInn(T data) {
-	Node nyNode = new Node(data);
-	nyNode.neste = this.foran;
-	this.foran = nyNode;
-    }
-
-    public Node fjern() {
-	Node fjern = this.foran;
-	this.foran = this.foran.neste;
-	return fjern;
-    }
-
-    /**
-     * Sjekker om listen er tom, true = tom, false = ikke tom
-     * @return true/false 
-     */
-    public boolean erTom() {
-	return foran == null;
-    }
     
-    /**
-     * Beregner antall elementer i listen
-     * @return antall
-     */
-    public int storrelse() {
-	int antall = 0;
-	Node tellerNode = this.foran;
-	while(tellerNo != null) {
-	    antall ++;
-	    tellerNode = tellerNode.neste;
+    public void settInnForan(T data) {
+	if (this.start == null) {
+	    this.start = new Node(data);
+	    this.stop = this.start;
 	}
-	return antall;
+	
+	else {
+	    Node nyNode = new Node(data);
+	    nyNode.neste = this.start;
+	    this.start = nyNode;
+	}
+    }
+
+    public void settInnBak(T data) {
+	if (this.stopp == null) {
+	    this.stopp = new Node(data);
+	    this.start = this.stop;
+	}
+	else {
+	    Node nyNode = new Node(data);
+	    this.stop.neste = nyNode;
+	    this.stop = nyNode;
+	}
+    }
+
+    public T fjernForan() {
+	Node fjern = this.start;
+	this.start = this.start.neste;
+	return fjern.data;
     }
 }
 
