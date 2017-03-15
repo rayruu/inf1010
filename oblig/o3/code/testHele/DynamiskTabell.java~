@@ -1,0 +1,6 @@
+import java.util.Iterator;
+
+public class DynamiskTabell<T> extends StatiskTabell<T> {
+
+
+}

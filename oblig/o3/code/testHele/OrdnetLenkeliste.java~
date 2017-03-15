@@ -1,16 +1,47 @@
 import java.util.Iterator;
 
-public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {
+public class OrdnetLenkeliste<T extends Comparable<T>> extends Lenkeliste<T> implements Liste<T> {
     private int antall;
 
-    public Stabel() {
+    public OrdnetLenkeliste() {
 	this.antall = 0;
     }
 
    public void settInn(T data) {
-       super.settInnForan(data);
-       antall ++;
-    }
+       
+       if (erTom()) {
+	   settInnForan(data);
+       }
+       else if((erTom() != true)) {
+	   initIterasjon();
+	   boolean settInn = true;
+
+	   while ((harNeste() == true) && (settInn == true)) {
+	       if (data.compareTo(hentData()) <= 0) {
+		   
+		   if (harForrige() == false) {
+		       settInnForan(data);
+		   }
+		   else {
+		       settInnMellom(data);
+		   }
+
+		   settInn = false;
+		   
+	       }
+	       else if (harNeste() != true) {
+		   settInnBak(data);
+		   settInn = false;
+		   
+	       }
+	       
+	       neste();
+	   }
+       }
+       
+       this.antall ++;
+   }       
+
 
     public T fjern() {
 	antall --;
@@ -25,6 +56,7 @@ public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {
 	return this.antall;
     }
 
+    // iterator
     public Iterator<T> iterator() {
 	return new ListeIterator();
     }
@@ -55,5 +87,7 @@ public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {
 	public T next() {
 	    return neste();
 	}
-    }
+    }    
+
+
 }

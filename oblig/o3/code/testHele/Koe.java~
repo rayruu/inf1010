@@ -1,14 +1,14 @@
 import java.util.Iterator;
 
-public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {
+public class Koe<T> extends Lenkeliste<T> implements Liste<T> {
     private int antall;
 
-    public Stabel() {
+    public Koe() {
 	this.antall = 0;
     }
 
    public void settInn(T data) {
-       super.settInnForan(data);
+       super.settInnBak(data);
        antall ++;
     }
 
@@ -24,6 +24,8 @@ public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {
     public int storrelse() {
 	return this.antall;
     }
+
+    // iterator
 
     public Iterator<T> iterator() {
 	return new ListeIterator();

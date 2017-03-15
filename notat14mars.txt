@@ -1,0 +1,17 @@
+Model <----> Control <----> view
+
+Model (back-end):
+- datastruktur
+- beregninger
+
+
+Control:
+- main
+
+View:
+-system.out
+
+
+#konstant
+private static final int STORE_BOKSTAVER = 10
+

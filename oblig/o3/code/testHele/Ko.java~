@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {
+public class Ko<T> extends Lenkeliste<T> implements Liste<T> {
     private int antall;
 
     public Stabel() {
@@ -8,7 +8,7 @@ public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {
     }
 
    public void settInn(T data) {
-       super.settInnForan(data);
+       super.settInnBak(data);
        antall ++;
     }
 

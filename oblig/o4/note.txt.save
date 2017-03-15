@@ -1,0 +1,17 @@
+######	Pasienter #####
+parameter:
+	- fødselsnummer
+	- gateadresse
+	- postnummer
+	- ID
+	- resept
+
+Benytter stabel til å lagre reseptene.
+
+metoder: definert i oppgavetekst under pasienter
+
+###### Leger #####
+Definert i leger,
+
+###### Fastleger ####
+
