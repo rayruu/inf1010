@@ -44,5 +44,9 @@ public class Lege implements Comparable<Lege> {
      */
     public Koe<Resept> hentReseptliste() {
 	return this.reseptliste;
-    }	
+    }
+
+    public String toString() {
+	return this.hentNavn();
+    }
 }

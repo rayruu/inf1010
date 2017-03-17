@@ -13,6 +13,7 @@ public abstract class Lenkeliste<T> {
     private Node stopp   = null;
     private Node neste   = null;
     private Node forrige = null;
+    private Node forrigeForrige = null;
     
     /**
      * Privat klasse som brukes til aa holde styr paa lenkelisten
@@ -74,8 +75,12 @@ public abstract class Lenkeliste<T> {
      */
     public void settInnMellom(T data) {
 	Node nyNode = new Node(data);
-	nyNode.neste = neste;
-	forrige.neste = nyNode;
+	//nyNode.neste = neste;
+	//forrige.neste = nyNode;
+	//nyNode.neste = this.forrige;
+	//this.forrige = nyNode;
+	nyNode.neste = this.forrige;
+	this.forrigeForrige.neste = nyNode;
     }
 
     /*
@@ -114,8 +119,14 @@ public abstract class Lenkeliste<T> {
      *
      * @return true/false
      */
+    /*
     public boolean harForrige() {
 	return this.forrige != null;
+    }
+    */
+
+    public boolean vedStart() {
+	return this.start.equals(this.forrige);
     }
 
     /*
@@ -127,8 +138,13 @@ public abstract class Lenkeliste<T> {
      *
      */
     public void settNesteNode() {
+	this.forrigeForrige = null;
 	this.forrige = null;
 	this.neste = this.start;
+	//System.out.println("setter start");
+	//System.out.println(this.neste);
+	//System.out.println(this.start);
+	//System.out.println(" ");
     }
     
     /**
@@ -149,6 +165,7 @@ public abstract class Lenkeliste<T> {
      */
     public T neste() throws NoSuchElementException {
 	T data = this.neste.data;
+	this.forrigeForrige = this.forrige;
 	this.forrige = this.neste;
 	this.neste = this.neste.neste;
 	return data;

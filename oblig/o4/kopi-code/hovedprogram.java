@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -240,18 +241,24 @@ class Oblig4 {
         public static void skrivTilFil(String filnavn) {
             PrintWriter ut;
             try {
-                ut = new PrintWriter(new File(filnavn));
+                ut = new PrintWriter(new File(filnavn), "utf-8");
             } catch (FileNotFoundException e) {
                 System.out.printf("Feil! Kunne ikke åpne '%s' for skriving.\n",
                                   filnavn);
                 return;
+            } catch (UnsupportedEncodingException e) {
+                System.out.println("Feil! Kan ikke skrive til fil fordi UTF-8 "
+                                  + "ikke er støttet på denne plattformen.");
+                return;
             }
 
-            ut.println(pasientLinjer());
-            ut.println(legemiddelLinjer());
-            ut.println(legeLinjer());
-            ut.println(reseptLinjer());
-            ut.println(Spesiallinje.SLUTT);
+            /* vi bruker printf med '\n' for å sørge for at linjeskift-tegnet
+            blir riktig på Windows */
+            ut.printf("%s\n", pasientLinjer());
+            ut.printf("%s\n", legemiddelLinjer());
+            ut.printf("%s\n", legeLinjer());
+            ut.printf("%s\n", reseptLinjer());
+            ut.printf("%s\n", Spesiallinje.SLUTT);
 
             ut.close();
         }

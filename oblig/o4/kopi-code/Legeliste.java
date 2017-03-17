@@ -1,5 +1,5 @@
 
-class Legeliste extends OrdnetLenkeliste<Lege> {
+public class Legeliste extends OrdnetLenkeliste<Lege> {
     /**
      * Soeker gjennom listen etter en lege med samme navn som `navn`
      * og returnerer legen (uten aa fjerne den fra listen).
@@ -8,8 +8,16 @@ class Legeliste extends OrdnetLenkeliste<Lege> {
      * @return  legen
      */
     public Lege finnLege(String navn) {
-        // fullfoer metoden
-	return null;
+	initIterasjon();
+	Lege lege = null;
+
+	while((harNeste() == true) && (hentData().hentNavn().compareTo(navn) <= 0)) {
+	    if (hentData().hentNavn().compareTo(navn) == 0) {
+		lege = hentData();
+	    }
+	    neste();
+	}
+	return lege;
     }
 
     /**
@@ -18,7 +26,17 @@ class Legeliste extends OrdnetLenkeliste<Lege> {
      * @return array med navn til alle legene
      */
     public String[] stringArrayMedNavn() {
-        // fullfoer metoden
-	return null;
+	String[] arrayMedNavn = new String[storrelse()];
+	int i = 0;
+	initIterasjon();
+	
+	while(harNeste() == true) {
+	    arrayMedNavn[i] = hentData().hentNavn();
+	    i ++;
+	    neste();
+	}
+	return arrayMedNavn;
     }
 }
+
+
