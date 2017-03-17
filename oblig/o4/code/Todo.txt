@@ -1,0 +1,23 @@
+TO DO!!!
+
+Legeliste
+fyll inn:
+    public Lege finnLege(String navn) { // fullfoer metoden }
+    public String[] stringArrayMedNavn() { // fullfoer metoden }
+
+
+Ferdige klasser som også er dokumentert:
+ - Legemiddel
+ - LegemiddelA
+ - LegemiddelB
+ - LegemiddelC
+   (Disse ligger i samme fil: Legemiddel)
+
+ - Resept
+ - BlaaResept
+ - HvitResept
+   (Disse ligger i samme fil: Resept)
+
+ - Pasient
+ - Lege
+

@@ -14,7 +14,7 @@ public class OrdnetLenkeliste<T extends Comparable<T>> extends Lenkeliste<T> imp
      * Setter inn et element i listen.
      * Ved hjelp av compareTo bestemmer om elementet
      * skal fora, mellom eller bak andre elementer.
-     * Hvi listen er tom, sett opp ny lenkeliste.
+     * Hvi listen er tom, sett opp ny lenkeliste.3
      * @param   element
      */
    public void settInn(T data) {

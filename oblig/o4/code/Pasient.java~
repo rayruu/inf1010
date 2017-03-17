@@ -1,27 +1,38 @@
 
 public class Pasient {
-    private int ID;
-    private String navn;
-    private long fodselsnummer;
-    private String gateadresse;
+    /* static variables */
+    public static int id = 0;
+    
+    /* private variables */
+    private int personligId;
     private int postnummer;
+    
+    private String navn;
+    private String gateadresse;
 
-    Pasient(int ID, String navn, long fodselsnummer, String gateadresse, int postnummer) {
-	this.ID = ID;
+    private long fodselsnummer;
+
+    // private Resept resept;
+    
+    
+    Pasient(String navn,
+	    long fodselsnummer,
+	    String gateadresse,
+	    int postnummer) {
 	this.navn = navn;
 	this.fodselsnummer = fodselsnummer;
 	this.gateadresse = gateadresse;
 	this.postnummer = postnummer;
+	this.personligId = this.id;
+	this.id ++;
     }
 
     public int hentId() {
-	return this.ID;
+	return this.personligId;
     }
-    
     public String hentNavn() {
 	return this.navn;
     }
-    
     public long hentFodselsnummer() {
 	return this.fodselsnummer;
     }
@@ -34,8 +45,9 @@ public class Pasient {
     
     public void leggTilResept(Resept resept) { /* fyll inn */ }
     
-    public Stabel<Resept> hentReseptliste() { /* fyll inn */ }
-}
-    
+    public Stabel<Resept> hentReseptliste() {
+	return null;
+    }
+
 	
-   
+}

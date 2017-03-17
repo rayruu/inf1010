@@ -1,0 +1,29 @@
+TO DO!!!
+
+Person:
+fyll inn:
+    public void leggTilResept(Resept resept) { /* fyll inn */ }
+    public Stabel<Resept> hentReseptliste() { /* fyll inn */ }
+
+Lege:
+fyll inn:
+    public int compareTo(Lege annenLege) { /* fyll inn */ }
+    public void leggTilResept(Resept resept) { /* fyll inn */ }
+    public Koe<Resept> hentReseptliste() { /* fyll inn */ }
+
+- nb! mulig subklasser må hente på super sin metode.   <--- dette er ikke nødvendig ut fra testprogram
+
+Legeliste
+fyll inn:
+    public Lege finnLege(String navn) { // fullfoer metoden }
+    public String[] stringArrayMedNavn() { // fullfoer metoden }
+
+
+
+
+Ferdige klasser som også er dokumentert:
+ - Legemiddel
+ - LegemiddelA
+ - LegemiddelB
+ - LegemiddelC
+   (Disse ligger i samme fil: Legemiddel)
