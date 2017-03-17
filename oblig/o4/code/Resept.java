@@ -1,3 +1,9 @@
+/**
+ * Abstrakt klasse reset som inneholder informasjon om resept id, pasient id, reit
+ * hvem som har skrevet den ut og hvilket legemiddel det er snakk om.
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 16. mars 2017
+ */
 public abstract class Resept {
     // static variable
     public static int id = 0;
@@ -87,8 +93,9 @@ public abstract class Resept {
 
     @Override
     public String toString() {
-	return this.hentLegemiddel().hentNavn();
+	return Integer.toString(this.reseptId);
     }
+
 }
 
 /* ######################## BlaaResept  ################################### */
@@ -99,15 +106,10 @@ public abstract class Resept {
  * Det vil si at det gis rabater paa legemidler
  */
 class BlaaResept extends Resept {
-    private double prisAaBetale;
 
     // constructor
-    BlaaResept(Legemiddel legemiddel,
-	       Lege utskrivendeLege,
-	       int pasientId,
-	       int reit) {
+    BlaaResept(Legemiddel legemiddel, Lege utskrivendeLege, int pasientId, int reit) {
 	super(legemiddel, utskrivendeLege, pasientId, reit);
-	this.prisAaBetale = legemiddel.hentPris()*0.25;
     }
     
     @Override
@@ -117,13 +119,9 @@ class BlaaResept extends Resept {
     
     @Override
     public double prisAaBetale() {
-	return this.prisAaBetale;
+	return hentLegemiddel().hentPris()*0.25;
     }
 
-    @Override
-    public String toString() {
-	return super.toString() + this.farge() + this.prisAaBetale();
-    }
 }
 
 /* ######################## HvitResept  ################################### */
@@ -135,15 +133,13 @@ class BlaaResept extends Resept {
  * Det vil si at det ikke gis rabater paa legemidler
  */
 class HvitResept extends Resept {
-    private double prisAaBetale;
 
     // constructor
     HvitResept(Legemiddel legemiddel,
 	       Lege utskrivendeLege,
 	       int pasientId,
-	       int reit) {
+	       int reit) {	    
 	super(legemiddel, utskrivendeLege, pasientId, reit);
-	this.prisAaBetale = legemiddel.hentPris();
     }
 
     @Override
@@ -153,12 +149,12 @@ class HvitResept extends Resept {
 
     @Override
     public double prisAaBetale() {
-	return this.prisAaBetale;
+	return hentLegemiddel().hentPris();
     }
     
     @Override
     public String toString() {
-	return super.toString() + this.farge() + this.prisAaBetale();
+	return this.farge();
     }
 }
 

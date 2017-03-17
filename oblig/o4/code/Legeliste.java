@@ -1,4 +1,9 @@
-
+/**
+ * Sub-klasse av ordnetlenkeliste som er stoerrelsesorden der foerste bokstav paa alfabetet er minst
+ * og siste er stoerst.
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 17. mars 2017
+ */
 public class Legeliste extends OrdnetLenkeliste<Lege> {
     /**
      * Soeker gjennom listen etter en lege med samme navn som `navn`

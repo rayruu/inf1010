@@ -1,3 +1,8 @@
+/**
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 11. mars 2017
+ */
+
 public interface Tabell<T> extends Iterable<T> {
     /**
      * Beregner antall elementer i tabellen

@@ -794,7 +794,7 @@ class Oblig4 {
         }
 
         public static Resept lagNyResept(String[] data) {
-            int dataPos = 0;
+	    int dataPos = 0;
             String farge = data[dataPos++].toLowerCase();
             int pasientId = Integer.parseInt(data[dataPos++]);
             String legenavn = data[dataPos++];

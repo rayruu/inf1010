@@ -7,6 +7,8 @@ import java.util.NoSuchElementException;
  * - Ordnet lenkeliste
  * - LIFO lenkeliste
  * - FIFO lenleliste
+ * @author Stein Raymond Rudshagen
+ * @version 1.5 16. mars 2017
  */
 public abstract class Lenkeliste<T> {
     private Node start   = null;

@@ -2,6 +2,8 @@ import java.util.Iterator;
 
 /**
  * Lager lenkeliste som er stoerrelsesorden der forste elementet er minst og siste er stoerst.
+ * @author Stein Raymond Rudshagen
+ * @version 1.5 17. mars 2017
  */
 public class OrdnetLenkeliste<T extends Comparable<T>> extends Lenkeliste<T> implements Liste<T> {
     private int antall;
@@ -18,37 +20,25 @@ public class OrdnetLenkeliste<T extends Comparable<T>> extends Lenkeliste<T> imp
      * @param   element
      */
    public void settInn(T data) {
-       
-       System.out.println("data " + data);
        if (erTom()) {
 	   settInnForan(data);
-	   System.out.println("Setter inn i tom liste");
        }
        else if((erTom() != true)) {
-	   //initIterasjon();
 	   boolean settInn = true;
 	   
-	   for (T node : this) {
-	       System.out.println("settinn " + settInn);
-	       System.out.println(data.compareTo(node));
-   
+	   for (T node : this) {   
 	       if ((data.compareTo(node) < 0) && (settInn == true)) {
-		   
-		   System.out.println(" sjekker ved start: " + vedStart());
 		   if (vedStart() == true) {
-		       System.out.println("Setter inn foran");
 		       settInnForan(data);
 		       settInn = false;
 		   }
 		   else {
-		       System.out.println("Setter inn mellom");
 		       settInnMellom(data);
 		       settInn = false;
 		   }
 
 	       }
 	       else if ((data.compareTo(node) > 0) && (settInn == true) && (harNeste() == false)) {
-		   System.out.println("Setter inn bak");
 		   settInnBak(data);
 		   settInn = false;
 	       }   
@@ -57,42 +47,6 @@ public class OrdnetLenkeliste<T extends Comparable<T>> extends Lenkeliste<T> imp
        
        this.antall ++;
    }
-		   
-    /*	   			   if (harForrige() == false) {	   }
-		   else {
-		       settInnMellom(data);
-		       System.out.println("Setter inn mellom");
-		   }
-		   settInn = false;
-	   
-	   while ((harNeste() == true) && (settInn == true)) {
-	       System.out.println(data.compareTo(hentData()));
-	       
-	       if (data.compareTo(hentData()) <= 0) {
-		   
-		   if (harForrige() == false) {
-		       System.out.println("Setter in foran");
-		       settInnForan(data);
-		   }
-		   else {
-		       settInnMellom(data);
-		       System.out.println("Setterin mellom");
-		       System.out.println(data);
-		   }
-
-		   settInn = false;
-		   
-	       }
-	       else if (harNeste() != true) {
-		   settInnBak(data);
-		   System.out.println("Setter in bak");
-		   settInn = false;
-		   
-	       }
-	       
-	       neste();
-	   }
-	   } */
 
     /**
      * Fjerner et element fra listen. Hvis listen er tom,

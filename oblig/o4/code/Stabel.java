@@ -1,3 +1,8 @@
+/**
+ * Subklasse av lenkelsite som benytter FIFO
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 11. mars 2017
+ */
 import java.util.Iterator;
 
 public class Stabel<T> extends Lenkeliste<T> implements Liste<T> {

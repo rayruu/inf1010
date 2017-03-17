@@ -2,6 +2,8 @@
  * Abstrakt klasse for legemiddel som holder informasjon
  * om navn, pris og virkestoff.
  * Hvert legemiddel vil faa en unik id hver.
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 16. mars 2017
  */
 public abstract class Legemiddel {
     // static variables
@@ -38,7 +40,7 @@ public abstract class Legemiddel {
     /**
      * Henter navnet til legemiddelet
      *
-   n  * @return navn
+     * @return navn
      */
     public String hentNavn() {
 	return this.navn;
@@ -64,7 +66,7 @@ public abstract class Legemiddel {
 
     @Override
     public String toString() {
-	return this.hentNavn() + this.hentPris();
+	return this.hentNavn() ;
     }
 }
 
@@ -95,11 +97,6 @@ class LegemiddelA extends Legemiddel {
     public int hentNarkotiskStyrke() {
 	return this.narkotiskStyrke;
     }
-
-    @Override
-    public String toString() {
-	return super.toString() + hentNarkotiskStyrke();
-    }
 }
 
 /* ######################## Legemiddel B ################################### */
@@ -128,11 +125,6 @@ class LegemiddelB extends Legemiddel {
      */
     public int hentVanedannendeStyrke() {
 	return this.vanedannendeStyrke;
-    }
-
-    @Override
-    public String toString() {
-	return super.toString() + this.hentVanedannendeStyrke();
     }
 }
 

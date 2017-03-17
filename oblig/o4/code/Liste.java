@@ -1,3 +1,7 @@
+/**
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 9. mars 2017
+ */
 public interface Liste<T> extends Iterable<T> {
     /**
      * Beregner antall elementer i listen

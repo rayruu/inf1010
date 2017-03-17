@@ -1,13 +1,15 @@
 /**
  * Klassen lege inneholder navnet til legen
  * lege kan opprette resept.
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 16. mars 2017
  */
 public class Lege implements Comparable<Lege> {
    
     // private variables:
     private String navn;
 
-    private Koe<Resept> reseptliste;
+    private Koe<Resept> reseptliste = new Koe<Resept>();
     
     Lege (String navn) {
 	this.navn = navn;
@@ -35,6 +37,7 @@ public class Lege implements Comparable<Lege> {
      * @input resept
      */
     public void leggTilResept(Resept resept) {
+        
 	this.reseptliste.settInn(resept);
     }
 

@@ -1,5 +1,7 @@
 /**
  * Pasientklasse som inneholder informasjon til pasienten
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 16. mars 2017
  */
 public class Pasient {
     /* static variables */
@@ -14,7 +16,7 @@ public class Pasient {
 
     private long fodselsnummer;
 
-    private Stabel<Resept> reseptliste;
+    private Stabel<Resept> reseptliste = new Stabel<Resept>();
 
     // constructor
     Pasient(String navn,
