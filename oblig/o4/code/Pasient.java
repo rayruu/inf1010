@@ -16,7 +16,7 @@ public class Pasient {
 
     private long fodselsnummer;
 
-    private Stabel<Resept> reseptliste = new Stabel<Resept>();
+    public Stabel<Resept> reseptliste = new Stabel<Resept>();
 
     // constructor
     Pasient(String navn,
@@ -89,6 +89,6 @@ public class Pasient {
 
     @Override
     public String toString() {
-	return hentNavn() + hentFodselsnummer();
+	return hentNavn();
     }
 }

@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -268,9 +269,16 @@ class Oblig4 {
         private static String[] reseptfarger = {"blaa", "hvit"};
         private static String[] legemiddeltyper = {"a", "b", "c"};
 
+        // disse brukes for å få Java reflection til å virke
+        // (reflection er utenfor INF1010-pensum)
+        private static final Pasient[] tomPasientarray = new Pasient[0];
+        private static final Legemiddel[] tomLegemiddelarray = new Legemiddel[0];
+        private static final Resept[] tomReseptarray = new Resept[0];
+
         @SuppressWarnings("unchecked")
-        private static <T> T[] tilArray(Tabell<T> tabellen) {
-            T[] ut = (T[]) new Object[tabellen.storrelse()];
+        private static <T> T[] tilArray(Tabell<T> tabellen, T[] a) {
+            T[] ut = (T[]) Array.newInstance(a.getClass().getComponentType(),
+                                             tabellen.storrelse());
             int pos = 0;
             for (T element : tabellen) {
                 ut[pos++] = element;
@@ -279,8 +287,9 @@ class Oblig4 {
         }
 
         @SuppressWarnings("unchecked")
-        private static <T> T[] tilArray(Liste<T> listen) {
-            T[] ut = (T[]) new Object[listen.storrelse()];
+        private static <T> T[] tilArray(Liste<T> listen, T[] a) {
+            T[] ut = (T[]) Array.newInstance(a.getClass().getComponentType(),
+                                             listen.storrelse());
             int pos = 0;
             for (T element : listen) {
                 ut[pos++] = element;
@@ -291,7 +300,8 @@ class Oblig4 {
         /* VALG FRA BRUKER */
 
         public static Pasient velgPasient() {
-            return IO.valgFraBruker("Pasient: ", tilArray(pasienter), true);
+            Pasient[] pasientarray = tilArray(pasienter, tomPasientarray);
+            return IO.valgFraBruker("Pasient: ", pasientarray, true);
         }
 
         public static Lege velgLege() {
@@ -301,19 +311,22 @@ class Oblig4 {
         }
 
         public static Legemiddel velgLegemiddel() {
-            return IO.valgFraBruker("Legemiddel: ", tilArray(legemidler), true);
+            Legemiddel[] legemiddelarray;
+            legemiddelarray = tilArray(legemidler, tomLegemiddelarray);
+            return IO.valgFraBruker("Legemiddel: ", legemiddelarray, true);
         }
 
         public static Legemiddel velgLegemiddel(Liste<Legemiddel>
                                                 legemiddelliste) {
-            return IO.valgFraBruker("Legemiddel: ", tilArray(legemiddelliste),
-                                    true);
+            Legemiddel[] legemiddelarray = tilArray(legemiddelliste,
+                                                    tomLegemiddelarray);
+            return IO.valgFraBruker("Legemiddel: ", legemiddelarray, true);
         }
 
         public static Resept velgResept(Liste<Resept> reseptliste) {
-            return IO.valgFraBruker("Resept: ", tilArray(reseptliste), true);
+            Resept[] reseptarray = tilArray(reseptliste, tomReseptarray);
+            return IO.valgFraBruker("Resept: ", reseptarray, true);
         }
-
 
         /* OPPRETTELSE AV NYE OBJEKTER */
 

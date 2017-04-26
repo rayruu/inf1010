@@ -1,23 +1,11 @@
 TO DO!!!
 
-Legeliste
-fyll inn:
-    public Lege finnLege(String navn) { // fullfoer metoden }
-    public String[] stringArrayMedNavn() { // fullfoer metoden }
+Se over alle klassene.
+Test Oblig 4
+     - legg til pasient, lege, legemiddel, resept
+     - test resept opplegget
+     - og noe mer
 
-
-Ferdige klasser som også er dokumentert:
- - Legemiddel
- - LegemiddelA
- - LegemiddelB
- - LegemiddelC
-   (Disse ligger i samme fil: Legemiddel)
-
- - Resept
- - BlaaResept
- - HvitResept
-   (Disse ligger i samme fil: Resept)
-
- - Pasient
- - Lege
+Vurder om å endre iterasjonen til for(... : ..) for at det ser mer
+fancy ut.
 

@@ -76,7 +76,13 @@ public abstract class Resept {
      * @return      om resepten kunne brukes
      */
     public boolean bruk() {
-	return this.reit != 0;
+	if (hentReit() > 0) {
+	    this.reit --;
+	    return true;
+	}
+	else {
+	    return false;
+	}
     }
 
     /**
@@ -90,12 +96,6 @@ public abstract class Resept {
      * @return      prisen pasienten maa betale
      */
     abstract public double prisAaBetale();
-
-    @Override
-    public String toString() {
-	return Integer.toString(this.reseptId);
-    }
-
 }
 
 /* ######################## BlaaResept  ################################### */
@@ -120,6 +120,11 @@ class BlaaResept extends Resept {
     @Override
     public double prisAaBetale() {
 	return hentLegemiddel().hentPris()*0.25;
+    }
+
+    @Override
+    public String toString() {
+	return this.farge();
     }
 
 }

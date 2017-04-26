@@ -1,3 +1,7 @@
+/**
+ * @author Stein Raymond Rudshagen
+ * @version 1.0 11. mars 2017
+ */
 import java.util.Iterator;
 
 /**

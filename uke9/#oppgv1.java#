@@ -1,0 +1,27 @@
+public class oppgaver{
+
+    int bunnyEars(int n){
+	int antallOerer = 0;
+	if (n==0) {
+	    return 0;
+	}
+	else {
+	    antallOerer = antallOerer + 2;
+	    bunnyEars(n-1);
+	}
+	return antallOerer;
+    }
+
+    int bunnyEars2(int n) {
+	int antallOerer = 0;
+	if (n==0) {
+	    return 0;
+	}
+	else if((n % 2) == 0) {
+	    antallOerer 
+	    
+	
+
+}
+    
+   

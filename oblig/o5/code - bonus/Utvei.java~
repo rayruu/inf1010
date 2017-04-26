@@ -1,0 +1,20 @@
+
+public class Utvei implements comparable<String>{
+    private String utvei;
+    private int lengde;
+    private Liste<String> listeMedUtvei;
+
+    
+    public Utvei(Liste<String> listeMedUtvei) {
+	this.listeMedUtvei = listeMedUtvei;
+    }
+
+    @Override
+    public int compareTo(String other) {
+	return utvei.length() - other.length();
+    }
+
+    public Liste<String> listeUtvei () {
+	Liste<String = 
+	
+    

@@ -1,0 +1,34 @@
+
+/**
+ * Inneholder informasjon om kryptisk melding, id, sekvensnummer og dekryptert melding
+ *
+ * @author Stein Raymond Rudshagen
+ * @version v0.1 17-04-20
+ */
+
+public class Melding {
+    private String krypMelding;
+    private String melding = null;
+    private int id;
+    private int sekvensnummer;
+    
+    private static int globalSekvensnummer = 0;
+
+    // Konstruktør
+    public Melding(int id, String krypMelding) {
+	this.krypMelding = krypMelding;
+	this.id = id;
+	this.sekvensnummer = this.globalSekvensnummer;
+	this.globalSekvensnummer ++;
+    }
+
+    @Override
+    public String toString() {
+	if (melding == null) {
+	    return "['" + krypMelding + "','" + this.id + "','" + this.sekvensnummer + "']";
+	} else {
+	    return "['" + melding + "','" + this.id + "','" + this.sekvensnummer + "']";
+	}
+    }
+}
+	

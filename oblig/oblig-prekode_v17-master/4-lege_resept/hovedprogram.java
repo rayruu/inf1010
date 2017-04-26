@@ -1,28 +1,34 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
+import java.util.Locale;
 import java.util.Scanner;
 
 class Oblig4 {
     private static Tabell<Pasient> pasienter = new StatiskTabell<Pasient>(25);
-	private static Tabell<Legemiddel> legemidler = new StatiskTabell<Legemiddel>(30);
-	private static Tabell<Resept> resepter = new StatiskTabell<Resept>(100);
-	private static Legeliste leger = new Legeliste();
+    private static Tabell<Legemiddel> legemidler = new StatiskTabell<Legemiddel>(30);
+    private static Tabell<Resept> resepter = new StatiskTabell<Resept>(100);
+    private static Legeliste leger = new Legeliste();
     private static String filnavn;
 
     public static void main(String[] args) {
-		if (args.length > 0) {
-			filnavn = args[0];
-		} else {
-			filnavn = IO.ikketomStringFraBruker("Filnavn: ");
-		}
+        // tvinger engelsk for aa sikre at desimalskilletegnet er '.'
+        Locale.setDefault(new Locale("en", "GB"));
 
-		if (Datafil.lesFraFil(filnavn)) { // vellykket ved true
-			Meny.hovedmeny();
-			Datafil.skrivTilFil(filnavn);
-		} else {
-			System.out.println("Innlesning mislyktes. Avslutter.");
-		}
+        if (args.length > 0) {
+            filnavn = args[0];
+        } else {
+            filnavn = IO.ikketomStringFraBruker("Filnavn: ");
+        }
+
+        if (Datafil.lesFraFil(filnavn)) { // vellykket ved true
+            Meny.hovedmeny();
+            Datafil.skrivTilFil(filnavn);
+        } else {
+            System.out.println("Innlesning mislyktes. Avslutter.");
+        }
     }
 
 
@@ -236,18 +242,24 @@ class Oblig4 {
         public static void skrivTilFil(String filnavn) {
             PrintWriter ut;
             try {
-                ut = new PrintWriter(new File(filnavn));
+                ut = new PrintWriter(new File(filnavn), "utf-8");
             } catch (FileNotFoundException e) {
                 System.out.printf("Feil! Kunne ikke åpne '%s' for skriving.\n",
                                   filnavn);
                 return;
+            } catch (UnsupportedEncodingException e) {
+                System.out.println("Feil! Kan ikke skrive til fil fordi UTF-8 "
+                                  + "ikke er støttet på denne plattformen.");
+                return;
             }
 
-            ut.println(pasientLinjer());
-            ut.println(legemiddelLinjer());
-            ut.println(legeLinjer());
-            ut.println(reseptLinjer());
-            ut.println(Spesiallinje.SLUTT);
+            /* vi bruker printf med '\n' for å sørge for at linjeskift-tegnet
+            blir riktig på Windows */
+            ut.printf("%s\n", pasientLinjer());
+            ut.printf("%s\n", legemiddelLinjer());
+            ut.printf("%s\n", legeLinjer());
+            ut.printf("%s\n", reseptLinjer());
+            ut.printf("%s\n", Spesiallinje.SLUTT);
 
             ut.close();
         }
@@ -257,9 +269,16 @@ class Oblig4 {
         private static String[] reseptfarger = {"blaa", "hvit"};
         private static String[] legemiddeltyper = {"a", "b", "c"};
 
+        // disse brukes for å få Java reflection til å virke
+        // (reflection er utenfor INF1010-pensum)
+        private static final Pasient[] tomPasientarray = new Pasient[0];
+        private static final Legemiddel[] tomLegemiddelarray = new Legemiddel[0];
+        private static final Resept[] tomReseptarray = new Resept[0];
+
         @SuppressWarnings("unchecked")
-        private static <T> T[] tilArray(Tabell<T> tabellen) {
-            T[] ut = (T[]) new Object[tabellen.storrelse()];
+        private static <T> T[] tilArray(Tabell<T> tabellen, T[] a) {
+            T[] ut = (T[]) Array.newInstance(a.getClass().getComponentType(),
+                                             tabellen.storrelse());
             int pos = 0;
             for (T element : tabellen) {
                 ut[pos++] = element;
@@ -268,8 +287,9 @@ class Oblig4 {
         }
 
         @SuppressWarnings("unchecked")
-        private static <T> T[] tilArray(Liste<T> listen) {
-            T[] ut = (T[]) new Object[listen.storrelse()];
+        private static <T> T[] tilArray(Liste<T> listen, T[] a) {
+            T[] ut = (T[]) Array.newInstance(a.getClass().getComponentType(),
+                                             listen.storrelse());
             int pos = 0;
             for (T element : listen) {
                 ut[pos++] = element;
@@ -280,7 +300,8 @@ class Oblig4 {
         /* VALG FRA BRUKER */
 
         public static Pasient velgPasient() {
-            return IO.valgFraBruker("Pasient: ", tilArray(pasienter), true);
+            Pasient[] pasientarray = tilArray(pasienter, tomPasientarray);
+            return IO.valgFraBruker("Pasient: ", pasientarray, true);
         }
 
         public static Lege velgLege() {
@@ -290,19 +311,22 @@ class Oblig4 {
         }
 
         public static Legemiddel velgLegemiddel() {
-            return IO.valgFraBruker("Legemiddel: ", tilArray(legemidler), true);
+            Legemiddel[] legemiddelarray;
+            legemiddelarray = tilArray(legemidler, tomLegemiddelarray);
+            return IO.valgFraBruker("Legemiddel: ", legemiddelarray, true);
         }
 
         public static Legemiddel velgLegemiddel(Liste<Legemiddel>
                                                 legemiddelliste) {
-            return IO.valgFraBruker("Legemiddel: ", tilArray(legemiddelliste),
-                                    true);
+            Legemiddel[] legemiddelarray = tilArray(legemiddelliste,
+                                                    tomLegemiddelarray);
+            return IO.valgFraBruker("Legemiddel: ", legemiddelarray, true);
         }
 
         public static Resept velgResept(Liste<Resept> reseptliste) {
-            return IO.valgFraBruker("Resept: ", tilArray(reseptliste), true);
+            Resept[] reseptarray = tilArray(reseptliste, tomReseptarray);
+            return IO.valgFraBruker("Resept: ", reseptarray, true);
         }
-
 
         /* OPPRETTELSE AV NYE OBJEKTER */
 

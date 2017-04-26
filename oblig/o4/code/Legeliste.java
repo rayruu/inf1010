@@ -13,14 +13,12 @@ public class Legeliste extends OrdnetLenkeliste<Lege> {
      * @return  legen
      */
     public Lege finnLege(String navn) {
-	initIterasjon();
 	Lege lege = null;
 
-	while((harNeste() == true) && (hentData().hentNavn().compareTo(navn) <= 0)) {
-	    if (hentData().hentNavn().compareTo(navn) == 0) {
-		lege = hentData();
+	for (Lege sjekkLege:this) {
+	    if(navn.compareTo(sjekkLege.hentNavn()) == 0) {
+		lege = sjekkLege;
 	    }
-	    neste();
 	}
 	return lege;
     }
@@ -33,12 +31,10 @@ public class Legeliste extends OrdnetLenkeliste<Lege> {
     public String[] stringArrayMedNavn() {
 	String[] arrayMedNavn = new String[storrelse()];
 	int i = 0;
-	initIterasjon();
 	
-	while(harNeste() == true) {
-	    arrayMedNavn[i] = hentData().hentNavn();
-	    i ++;
-	    neste();
+	for (Lege navn:this) {
+	    arrayMedNavn[i] = navn.hentNavn();
+	    i++;
 	}
 	return arrayMedNavn;
     }
